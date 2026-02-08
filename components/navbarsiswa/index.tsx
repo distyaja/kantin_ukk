@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { Icon } from '../icon';
 
 export default function Navbar() {
@@ -12,13 +13,12 @@ export default function Navbar() {
             <div className="w-full px-8 flex flex-wrap items-center justify-between mx-auto p-4">
 
                 {/* LOGO */}
-                {/* LOGO */}
-                <a href="#" className="flex items-center gap-2">
+                <Link href="/siswa/dashboard" className="flex items-center gap-2">
                     <Icon size={28} color="#2563eb" />
                     <span className="text-xl font-bold text-blue-600">
                         IniKantin
                     </span>
-                </a>
+                </Link>
 
                 {/* MOBILE BUTTON */}
                 <button
@@ -34,55 +34,39 @@ export default function Navbar() {
                 <div className={`${isMenuOpen ? 'block' : 'hidden'} w-full md:block md:w-auto`}>
                     <ul className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6 mt-4 md:mt-0 bg-yellow-300 md:bg-transparent rounded-lg p-4 md:p-0">
 
-                        <li>
-                            <a className="font-semibold text-blue-600 hover:text-blue-800">
-                                Home
-                            </a>
-                        </li>
-
                         {/* DROPDOWN */}
                         <li className="relative">
                             <button
                                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                                 className="flex items-center gap-1 font-semibold text-blue-600 hover:text-blue-800"
                             >
-                                Siswa
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                Menu
+                                <svg className={`w-4 h-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" d="m6 9 6 6 6-6" />
                                 </svg>
                             </button>
 
                             {isDropdownOpen && (
-                                <div className="absolute mt-2 w-44 bg-yellow-200 rounded-lg shadow-lg border border-yellow-400">
+                                <div className="absolute mt-2 w-48 bg-yellow-200 rounded-lg shadow-lg border border-yellow-400">
                                     <ul className="py-2 text-sm text-blue-700 font-medium">
-                                        {["Dashboard", "Settings", "Earnings", "Sign out"].map(item => (
-                                            <li key={item}>
-                                                <a className="block px-4 py-2 hover:bg-yellow-300 hover:text-blue-800">
-                                                    {item}
-                                                </a>
-                                            </li>
-                                        ))}
+                                        <li>
+                                            <Link href="/siswa/dashboard" className="block px-4 py-2 hover:bg-yellow-300 hover:text-blue-800">
+                                                Dashboard
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link href="/siswa/status-pesanan" className="block px-4 py-2 hover:bg-yellow-300 hover:text-blue-800">
+                                                Status Pesanan
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link href="/siswa/histori-pemesanan" className="block px-4 py-2 hover:bg-yellow-300 hover:text-blue-800">
+                                                Histori Pemesanan
+                                            </Link>
+                                        </li>
                                     </ul>
                                 </div>
                             )}
-                        </li>
-
-                        <li>
-                            <a className="font-semibold text-blue-600 hover:text-blue-800">
-                                Services
-                            </a>
-                        </li>
-
-                        <li>
-                            <a className="font-semibold text-blue-600 hover:text-blue-800">
-                                Pricing
-                            </a>
-                        </li>
-
-                        <li>
-                            <a className="font-semibold text-blue-600 hover:text-blue-800">
-                                Contact
-                            </a>
                         </li>
 
                     </ul>

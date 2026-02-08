@@ -1,7 +1,7 @@
 import Navbar from "@/components/navbar";
 import { ReactNode } from "react";
 
-export default function MenuLayout({
+export default function StanLayout({
   children,
 }: {
   children: ReactNode;
