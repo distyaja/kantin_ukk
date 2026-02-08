@@ -7,11 +7,11 @@ const axiosInstance = axios.create({
 
 export const get = async (url: string, token: string) => {
   try {
-    let headers: any = {
+    const headers: any = {
       Authorization: `Bearer ${token}` || "",
       makerID: 106,
     };
-    let result = await axiosInstance.get(url, {
+    const result = await axiosInstance.get(url, {
       headers,
     });
 
@@ -44,12 +44,12 @@ export const post = async (
   try {
     const typed: string =
       typeof data == "string" ? "application/json" : "multipart/form-data";
-    let headers: any = {
+    const headers: any = {
       Authorization: `Bearer ${token}` || "",
       "Content-Type": typed,
       makerID: 106,
     };
-    let result = await axiosInstance.post(url, data, {
+    const result = await axiosInstance.post(url, data, {
       headers,
     });
 
@@ -82,7 +82,7 @@ export const put = async (
   try {
     const type: string =
       typeof data == "string" ? "application/json" : "multipart/form-data";
-    let result = await axiosInstance.put(url, data, {
+    const result = await axiosInstance.put(url, data, {
       headers: {
         Authorization: `Bearer ${token}` || "",
         "Content-Type": type,
