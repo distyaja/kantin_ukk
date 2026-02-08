@@ -99,9 +99,6 @@ const MenuPage = () => {
             {menu.map((data, index) => (
               <div
                 key={data.id ?? `menu-${index}`}
-                onClick={() =>
-                  (window.location.href = `/stan/menu/${data.id_menu}`)
-                }
                 className="flex flex-wrap items-center bg-white rounded-lg p-3 shadow border"
               >
                 {/* FOTO */}
@@ -144,9 +141,17 @@ const MenuPage = () => {
                 </div>
 
                 {/* ACTION */}
-                <div className="w-full md:w-2/12 p-2">
+                <div className="w-full md:w-2/12 p-2 ">
                   <small className="font-semibold text-gray-500">Aksi</small>
                   <div className="flex gap-2 mt-1">
+                    <button
+                      className="px-2 py-1 rounded-md bg-blue-500 text-white"
+                      onClick={() =>
+                        (window.location.href = `/stan/menu/${data.id}`)
+                      }
+                    >
+                      Lihat Detail
+                    </button>
                     <UpdateMenu selectedMenu={data} />
                     <DeleteMenu selectedMenu={data} />
                   </div>
