@@ -42,20 +42,25 @@ export default function DashboardPage() {
         const token = getToken();
         const endpoint = getApiEndpoint(selectedCategory);
 
+        // Kirim search sebagai JSON string
+        const requestBody = JSON.stringify({
+          search: search,
+        });
+
         const { data } = await post(
-          `${endpoint}?search=${search}`,
-          search,
+          endpoint,
+          requestBody, // ← JSON string
           token,
         );
 
         if (data?.status && Array.isArray(data.data)) {
           // Filter valid items dan tambahkan unique key untuk handle duplicate IDs
           const validMenu = data.data
-            .filter((item: IMenu) => item.id != null)
+            .filter((item: IMenu) => item.id_menu != null)
             .map((item: IMenu, index: number) => ({
               ...item,
               // Generate unique key combining ID and index to handle duplicates
-              uniqueKey: `${item.id}-${index}-${item.nama_makanan}`,
+              uniqueKey: `${item.id_menu}-${index}-${item.nama_makanan}`,
             }));
 
           setMenu(validMenu);
@@ -147,7 +152,7 @@ export default function DashboardPage() {
                   onClick={() =>
                     (window.location.href = `/stan/menu/${item.id_menu}`)
                   }
-                  className="bg-white rounded-xl p-4 border hover:shadow-lg transition-shadow"
+                  className="bg-white rounded-xl p-4 border hover:shadow-lg transition-shadow cursor-pointer"
                 >
                   <div className="relative w-full aspect-square mb-2">
                     <Image
